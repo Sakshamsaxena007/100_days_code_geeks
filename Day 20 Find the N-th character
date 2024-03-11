@@ -1,0 +1,26 @@
+class Solution
+{
+    public char nthCharacter(String s, int r, int n)
+    {
+        //code here
+        
+        String tempString ="";
+        
+        while(r>0){
+            tempString ="";
+        for(int i=0;i<=n;i++){
+            
+           if(s.charAt(i) == '0'){
+               tempString +="01";
+           }else{
+               tempString +="10";
+           }
+        }
+        s=tempString;
+        r--;
+        }
+        
+        return s.charAt(n);
+        
+    }
+}
