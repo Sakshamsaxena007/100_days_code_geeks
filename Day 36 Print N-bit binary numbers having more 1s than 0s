@@ -1,0 +1,15 @@
+class Solution {
+    ArrayList<String> NBitBinary(int N) {
+        ArrayList<String>ans = new ArrayList();
+        solve("",N,0,0,ans);
+        return ans;
+    }
+    static void solve(String ds,int n,int zero,int ones,ArrayList<String>ans){
+        if(ds.length()==n){
+            ans.add(ds);
+            return;
+        }
+        if(ds.length()+1<=n) solve(ds+"1",n,zero,ones+1,ans);
+        if(ones>zero) solve(ds+"0",n,zero+1,ones,ans);
+    }
+}
