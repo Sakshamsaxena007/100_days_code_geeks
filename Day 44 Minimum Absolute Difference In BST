@@ -1,0 +1,21 @@
+class Solution
+{
+    public int min=Integer.MAX_VALUE;
+    ArrayList<Integer> al = new ArrayList<>();
+    int l=0;
+    void moon(Node root){
+        if(root==null)return;
+        moon(root.left);
+        al.add(root.data);
+        l++;
+        if(l>1){
+            min = Math.min(min, al.get(l - 1) - al.get(l - 2));
+        }
+        moon(root.right);
+    }
+    int absolute_diff(Node root)
+    {
+        moon(root);
+        return min;
+    }
+}
