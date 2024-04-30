@@ -1,0 +1,21 @@
+class Solution
+{
+   
+    Node delete(Node head, int k)
+    {
+        if(k==1) return null;
+        int cnt=0;
+        Node prev=null;
+        Node curr=head;
+        while(curr != null){
+            cnt++;
+            if(cnt==k){
+                prev.next=curr.next;
+                cnt=0;
+            }
+            prev=curr;
+            curr=curr.next;
+        }
+        return head;
+    }
+}
