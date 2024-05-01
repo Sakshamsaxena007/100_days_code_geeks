@@ -1,0 +1,53 @@
+class Solution {
+    
+    public Node arrangeCV(Node head){
+        //write code here and return the head of changed linked list
+        Node vHead = null; // vowel head
+        Node vTail = null; // vowel tail
+        Node cHead = null; // consonant head
+        Node cTail = null; // consonant tail
+        
+        Node temp = head;
+        
+        while (temp != null) {
+            if (isVowel(temp.data)) {
+                if (vTail == null) {
+                    // this is the first vowel
+                    vHead = temp;
+                    vTail = temp;
+                } else {
+                    vTail.next = temp;
+                    vTail = vTail.next;
+                }
+            } else {
+                if (cTail == null) {
+                    // this is the first consonant
+                    cHead = temp;
+                    cTail = temp;
+                } else {
+                    cTail.next = temp;
+                    cTail = cTail.next;
+                }
+            }
+            
+            temp = temp.next;
+        }
+        
+        // Important - the consonant tail should point to null 
+        // as in the new list cTail will be the last node
+        cTail.next = null; 
+        
+        if (vTail == null) {
+            // If there are not vowels present 
+            return cHead;
+        }
+        
+        vTail.next = cHead;
+        
+        return vHead;
+    }
+    
+    boolean isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+}
