@@ -1,0 +1,39 @@
+class Solution{
+    ArrayList<Integer> pos = new ArrayList<>();
+    ArrayList<Integer> neg = new ArrayList<>();
+    
+    public ArrayList <Integer> verticalSum(Node root) {
+        // add your code here
+        pos.add(0);
+        neg.add(0);
+        traverse(root, 0);
+        ArrayList<Integer> res = new ArrayList<>();
+        for(int i=neg.size()-1; i>0; i--) res.add(neg.get(i));
+        for(int i=0; i<pos.size(); i++) res.add(pos.get(i));
+        return res;
+    }
+    
+    private void traverse(Node root, int level){
+        if(root == null){
+            return;
+        }
+        if(level < 0){
+            if(neg.size() <= -level){
+                neg.add(root.data);
+            }
+            else{
+                neg.set(-level, neg.get(-level)+root.data);
+            }
+        }
+        else{
+            if(pos.size() <= level){
+                pos.add(root.data);
+            }
+            else{
+                pos.set(level, pos.get(level)+root.data);
+            }
+        }
+        traverse(root.left, level-1);
+        traverse(root.right, level+1);
+    }
+}
