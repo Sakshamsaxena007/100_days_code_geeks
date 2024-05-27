@@ -1,0 +1,23 @@
+class Solution {
+    public int longestSubseq(int n, int[] a) {
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, 1);
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (Math.abs(a[i] - a[j]) == 1) {
+                    dp[i] = Math.max(dp[i], 1 + dp[j]);
+                }
+            }
+        }
+
+        int maxElement = 0;
+        for (int value : dp) {
+            if (value > maxElement) {
+                maxElement = value;
+            }
+        }
+
+        return maxElement;
+    }
+}
